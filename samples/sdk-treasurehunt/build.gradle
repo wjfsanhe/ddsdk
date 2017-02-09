@@ -20,11 +20,13 @@ model {
         compileSdkVersion 25
         buildToolsVersion "25.0.0"
 
-        defaultConfig {
+        defaultConfig.with {
             minSdkVersion.apiLevel 19
             targetSdkVersion.apiLevel 24
             versionCode 1
             versionName "1.0"
+            //buildConfig "private final static boolean API_ENV = true;"
+
         }
 
         buildTypes {
@@ -35,8 +37,22 @@ model {
         }
     }
 }
+repositories {
+    flatDir {
+        dirs '../../libraries' // aar目录
+    }
+}
+/*dependencies {
+    compile 'com.google.vr:sdk-audio:1.20.0'
+    compile 'com.google.vr:sdk-base:1.20.0@aar'
+
+}*/
+
 
 dependencies {
-    compile 'com.google.vr:sdk-audio:1.20.0'
-    compile 'com.google.vr:sdk-base:1.20.0'
+    compile(name:'sdk-audio-1.20.0', ext:'aar')
+    compile(name:'sdk-base-1.20.0', ext:'aar')
+    compile(name:'sdk-common-1.20.0', ext:'aar')
 }
+
+
